@@ -52,12 +52,17 @@ spec:
                 secretKeyRef:
                   name: mongodb-secret
                   key: mongo-root-password
+            - name: APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: p0-auth-secret
+                  key: p0-auth-app-secret
             - name: MONGO_PORT
               value: "27017"
             - name: NODE_ENV
               value: "prod"
             - name: PORT
-              value: "8002"
+              value: "8080"
 
 ---
 kind: Service
@@ -73,8 +78,8 @@ spec:
   ports:
     - name: http
       port: 8080
-      targetPort: 8002
+      targetPort: 8080
     - name: https
       port: 8443
-      targetPort: 8002
+      targetPort: 8080
   type: ClusterIP

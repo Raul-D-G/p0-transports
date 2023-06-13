@@ -88,6 +88,12 @@ module.exports = {
           messaage: "Database connection error",
         });
       }
+      if (!results) {
+        return res.json({
+          success: 0,
+          message: "Inregistrarea nu a fost gasita",
+        });
+      }
       return res.json(results);
     });
   },
